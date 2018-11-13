@@ -6,7 +6,7 @@ make your own changes if needed. For more detail read my blog post: [Taking an i
 Thanks to everyone for their valuable feedback and contributions.
 
 
-# CamelCase [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/fatih/camelcase) [![Build Status](http://img.shields.io/travis/fatih/camelcase.svg?style=flat-square)](https://travis-ci.org/fatih/camelcase)
+# CamelCase [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/taxio/camelcase) [![Build Status](https://travis-ci.org/taxio/camelcase.svg?branch=master)](https://travis-ci.org/taxio/camelcase)
 
 CamelCase is a Golang (Go) package to split the words of a camelcase type
 string into a slice of words. It can be used to convert a camelcase word (lower
