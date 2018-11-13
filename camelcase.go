@@ -3,9 +3,25 @@
 package camelcase
 
 import (
+	"strings"
 	"unicode"
 	"unicode/utf8"
 )
+
+type splitOptionns struct {
+	toLower bool
+}
+
+// SplitOption is options of Split method
+type SplitOption func(*splitOptionns)
+
+// ToLower option is a option.
+// output of Split strings makes lower.
+func ToLower(flg bool) SplitOption {
+	return func(ops *splitOptionns) {
+		ops.toLower = flg
+	}
+}
 
 // Split splits the camelcase word and returns a list of words. It also
 // supports digits. Both lower camel case and upper camel case are supported.
@@ -44,7 +60,11 @@ import (
 //       if subsequent string is lower case:
 //         move last character of upper case string to beginning of
 //         lower case string
-func Split(src string) (entries []string) {
+func Split(src string, opts ...SplitOption) (entries []string) {
+	opt := splitOptionns{}
+	for _, o := range opts {
+		o(&opt)
+	}
 	// don't split invalid utf8
 	if !utf8.ValidString(src) {
 		return []string{src}
@@ -84,6 +104,12 @@ func Split(src string) (entries []string) {
 	for _, s := range runes {
 		if len(s) > 0 {
 			entries = append(entries, string(s))
+		}
+	}
+
+	if opt.toLower {
+		for i := 0; i < len(entries); i++ {
+			entries[i] = strings.ToLower(entries[i])
 		}
 	}
 	return
